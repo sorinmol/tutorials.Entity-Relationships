@@ -3,26 +3,20 @@
 #  Command Line Interface to start all services associated with the Getting-Started Tutorial
 #
 #  For this tutorial the commands are merely a convenience script to run docker-compose
-#
-
 set -e
-
 loadData () {
 	./import-data
 	echo ""
 }
-
 stoppingContainers () {
 	echo "Stopping containers"
 	docker-compose --log-level ERROR -p fiware down -v --remove-orphans
 }
-
 if (( $# != 1 )); then
 	echo "Illegal number of parameters"
 	echo "usage: services [create|start|stop]"
 	exit 1
 fi
-
 command="$1"
 case "${command}" in
 	"help")
